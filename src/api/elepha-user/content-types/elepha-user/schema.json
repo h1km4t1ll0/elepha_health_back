@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "elepha_users",
+  "info": {
+    "singularName": "elepha-user",
+    "pluralName": "elepha-users",
+    "displayName": "Elepha-user"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string"
+    },
+    "second_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    }
+  }
+}

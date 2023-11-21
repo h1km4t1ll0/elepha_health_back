@@ -1,7 +1,8 @@
 /**
  * A set of functions called "actions" for `password-reset`
  */
-import * as nodemailer from 'nodemailer';
+import { createTransport } from "nodemailer";
+
 export default {
   passwordReset: async (ctx, next) => {
     try {
@@ -10,16 +11,37 @@ export default {
 
       const code = Math.floor(1000 + Math.random() * 9000);
 
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'dolgovdaniil007@gmail.com',
-          pass: 'qkuq msww klvq nxgq'
-        }
-      });
+      const credentials = {
+        email: process.env.EMAIL_SENDER_ADDRESS,
+        service: process.env.EMAIL_SERVICE,
+        password: process.env.EMAIL_PASSWORD,
+      };
+
+      let transporter;
+
+      if (credentials.service == 'yandex') {
+        transporter = createTransport({
+          pool: true,
+          host: "smtp.yandex.ru",
+          port: 465,
+          auth: {
+            user: credentials.email,
+            pass: credentials.password
+          }
+        });
+      } else {
+        transporter = createTransport({
+          service: 'gmail',
+          auth: {
+            user: credentials.email,
+            pass: credentials.password
+          }
+        });
+      }
+
 
       const mailOptions = {
-        from: 'dolgovdaniil007@gmail.com',
+        from: 'noreply@elephahealth.com',
         to: email,
         subject: 'Сброс пароля',
         text: `Ваш код для сброса пароля в приложении CureSound: ${code}`

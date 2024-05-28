@@ -47,13 +47,7 @@ export default {
         text: `Ваш код для сброса пароля в приложении CureSound: ${code}`
       };
 
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+      transporter.sendMail(mailOptions);
 
       return {'code': code};
     } catch (err) {

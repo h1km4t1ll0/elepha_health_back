@@ -7,6 +7,7 @@ export default {
   passwordReset: async (ctx, next) => {
     try {
       console.log(ctx.request.body)
+      console.log('serokigjoijer')
       const email = ctx.request.body.email;
 
       const code = Math.floor(1000 + Math.random() * 9000);
@@ -32,6 +33,9 @@ export default {
       } else {
         transporter = createTransport({
           service: 'gmail',
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
           auth: {
             user: credentials.email,
             pass: credentials.password

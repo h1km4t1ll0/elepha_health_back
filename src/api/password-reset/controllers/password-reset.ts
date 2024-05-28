@@ -41,7 +41,7 @@ export default {
 
 
       const mailOptions = {
-        from: 'noreply@elephahealth.com',
+        from: credentials.email,
         to: email,
         subject: 'Сброс пароля',
         text: `Ваш код для сброса пароля в приложении CureSound: ${code}`
